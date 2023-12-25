@@ -25,7 +25,7 @@ import urllib.request
 # Server API URLs
 QUERY = "http://localhost:8080/query?id={}"
 
-# 500 server request
+# 500 server requests
 N = 500
 
 
@@ -33,9 +33,10 @@ def getDataPoint(quote):
     """ Produce all the needed values to generate a datapoint """
     """ ------------- Update this function ------------- """
     stock = quote['stock']
-    bid_price = float(quote['top_bid']['price'])
-    ask_price = float(quote['top_ask']['price'])
-    price = bid_price
+    bid_price = float(quote['top_bid']['price']) #maximum any buyer is willing to pay
+    ask_price = float(quote['top_ask']['price']) #minimum any seller is listing the stock for
+    price = (bid_price + ask_price) / 2 #average of the bid and ask prices
+    
     return stock, bid_price, ask_price, price
 
 
